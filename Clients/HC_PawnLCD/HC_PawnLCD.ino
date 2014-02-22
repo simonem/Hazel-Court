@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(38400);
   while (!Serial) { ; }
   
- lcd.begin(9600);
+  lcd.begin(9600);
   delay(100);
   tft_command(3,2);
   lcd.println("LCD started");  
@@ -21,19 +21,16 @@ void loop()
 {
     if(Serial.available() > 0)
     {
-        incomingCommand = Serial.readStringUntil('\n');
-         Serial.println("Stringa: ");
-        Serial.println(incomingCommand);     
+      incomingCommand = Serial.readStringUntil('\n');
+      Serial.println("Stringa: ");
+      Serial.println(incomingCommand);     
       delay(100);      
       Serial.println(incomingCommand.equals("prova"));
       incomingCommand += ".bmp";
       incomingCommand.toCharArray(charBuf, 50); 
-      
-       tft_command(0); 
-        tft_command(13,0,0,charBuf);
-      
-    }
-       
+      tft_command(0); 
+      tft_command(13,0,0,charBuf);
+    }       
     delay(1000);
 }
 

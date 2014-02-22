@@ -16,7 +16,6 @@ void setup() {
 
   vibrator_setup(); 
   nfc.begin();
-  //Serial1.begin(38400);
   Serial1.begin(38400);
   while (!Serial1) { ; }
   Serial1.println("Pawn-NFC started2");

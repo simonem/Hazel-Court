@@ -5,7 +5,7 @@ import scratch
 
 #Opening serial connection with Pawn/NFC
 try:
-	serPawnNFC = serial.Serial('/dev/tty.Pawn-XadowBLESlave', 38400)
+	serPawnNFC = serial.Serial('/dev/tty.usbmodemfa131', 38400)
 	serPawnNFC.flushInput()
 except:
 	print "[Error] No Pawn/NFC connected"		
@@ -13,7 +13,7 @@ stringaNFCPawn=" "
 
 #Opening serial connection with Magnifier
 try:
-	serMagNFC = serial.Serial('/dev/tty.Magnifier-XadowBLESlave', 38400)
+	serMagNFC = serial.Serial('/dev/tty.Magnifier-XadowBLESlave-1', 38400)
 	serMagNFC.flushInput()
 except:
 	print "[Error] No Magnifier connected"		
@@ -45,7 +45,7 @@ while True:
 		print stringaNFCMag
 		s.broadcast(stringaNFCMag)
 	else:
-		print '[Debug] Text received from Pawn NFC: '
+		print '[Debug] Text received from Magnifier: '
 		print stringaNFCMag
 	
 	

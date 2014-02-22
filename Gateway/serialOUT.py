@@ -13,7 +13,7 @@ def listen():
 
 s = scratch.Scratch()
 try:
-	serLCD = serial.Serial('/dev/tty.Pawn-LCD-XadowBLESlave', 38400)
+	serLCD = serial.Serial('/dev/tty.usbmodemfa131', 38400)
 except:
 	print "[Error] No LCD connected"
 try:

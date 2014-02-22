@@ -14,11 +14,11 @@ SoftwareSerial lcd(15, A5); // RX, TX
 char charBuf[50];
 
 void setup() {
-  Serial.println("Pawn-LCD started");
 
-  Serial.begin(38400);
-  while (!Serial) { ; }
-  
+  Serial1.begin(38400);
+  while (!Serial1) { ; }
+  Serial1.println("Pawn-LCD started");
+
   lcd.begin(9600);
   delay(100);
   tft_command(3,2);
@@ -32,13 +32,13 @@ void setup() {
 
 void loop() 
 {
-    if(Serial.available() > 0)
+    if(Serial1.available() > 0)
     {
-      incomingCommand = Serial.readStringUntil('\n');
-      Serial.println("Stringa: ");
-      Serial.println(incomingCommand);     
+      incomingCommand = Serial1.readStringUntil('\n');
+//      Serial.println("Stringa: ");
+//      Serial.println(incomingCommand);     
       delay(100);      
-      Serial.println(incomingCommand.equals("prova"));
+//      Serial.println(incomingCommand.equals("prova"));
       incomingCommand += ".bmp";
       incomingCommand.toCharArray(charBuf, 50); 
       tft_command(0); 
@@ -62,7 +62,7 @@ void loop()
       }
       if (payloadAsString != currentpayload)
       {
-      Serial.println(payloadAsString);
+      Serial1.println(payloadAsString);
       currentpayload = payloadAsString;
       }
     }

@@ -9,7 +9,7 @@ NfcAdapter nfc = NfcAdapter(pn532_i2c);
 
 #define OFF      0
 #define ON       1
-#define LED_PIN     15
+#define LED_PIN     16
 String currentpayload = "";
 String payloadAsString = "";
 
@@ -19,18 +19,9 @@ void setup() {
   
   Serial1.begin(38400);
   while (!Serial1) { ; }
-  Serial1.println("Magnifier Started");
+  Serial1.println("Magnifier Started2");
   delay(100);
-  
-  pinMode(LED_PIN, OUTPUT); 
-  digitalWrite(LED_PIN,HIGH);
-  delay(100);
-  digitalWrite(LED_PIN,LOW);
-  delay(100);
-  digitalWrite(LED_PIN,HIGH);
-  delay(100);
-  digitalWrite(LED_PIN,LOW);
-  delay(100);  
+ blink; 
 }
 
 void loop() {
@@ -66,6 +57,8 @@ void loop() {
   }  
   currentpayload = payloadAsString;
   delay(500);
+  blink();
+  
 }
 
 void vibrator_setup() {
@@ -73,6 +66,17 @@ void vibrator_setup() {
   DDRB |= 0x04;
   // once and for all
   PORTB |= 0x04;
+}
+
+void blink(){
+  digitalWrite(LED_PIN,HIGH);
+  delay(100);
+  digitalWrite(LED_PIN,LOW);
+  delay(100);
+  digitalWrite(LED_PIN,HIGH);
+  delay(100);
+  digitalWrite(LED_PIN,LOW);
+  delay(100);
 }
 
 void set_vibrator(int state) {

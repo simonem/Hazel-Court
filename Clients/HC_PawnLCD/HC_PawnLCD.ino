@@ -15,13 +15,13 @@ char charBuf[50];
 
 void setup() {
 
-  Serial1.begin(38400);
-  while (!Serial1) { ; }
-  Serial1.println("Pawn-LCD started");
+  Serial.begin(38400);
+  while (!Serial) { ; }
+  Serial.println("Pawn-LCD started");
 
   lcd.begin(9600);
   delay(100);
-  tft_command(3,2);
+  tft_command(3,0);
   lcd.println("LCD started");  
   
   nfc.begin();
@@ -32,9 +32,9 @@ void setup() {
 
 void loop() 
 {
-    if(Serial1.available() > 0)
+    if(Serial.available() > 0)
     {
-      incomingCommand = Serial1.readStringUntil('\n');
+      incomingCommand = Serial.readStringUntil('\n');
 //      Serial.println("Stringa: ");
 //      Serial.println(incomingCommand);     
       delay(100);      
@@ -62,7 +62,7 @@ void loop()
       }
       if (payloadAsString != currentpayload)
       {
-      Serial1.println(payloadAsString);
+      Serial.println(payloadAsString);
       currentpayload = payloadAsString;
       }
     }

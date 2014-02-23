@@ -2,17 +2,38 @@
 
 import serial
 import scratch
+import threading
 
 def listen():
 	try:
 		yield s.receive()
 	except scratch.ScratchError:
 		raise StopIteration
+		
+def readserial(serial,scratch):
+	print "[Debug] Thread started"
+	while True:
+		stringaNFC = serial.readline().strip()
+		print "[Debug] Read from serial Started"
+		if "room" in stringaNFC:
+			print '[Debug] Room received:'
+			print stringaNFC
+			scratch.broadcast(stringaNFC)
+		elif "card" in stringaNFC:
+			print '[Debug] Card received:'
+			print stringaNFC
+			scratch.broadcast(stringaNFC)
+		else:
+			print '[Debug] Text received from Pawn NFC: '
+			print stringaNFC
+		#	serPawn.flushInput()
+	
 
 #Opening serial connection with Pawn/NFC
 try:
-	serPawn = serial.Serial('/dev/tty.usbmodemfa131', 38400, timeout=1)
+	serPawn = serial.Serial('/dev/tty.usbmodemfa131', 38400)
 	serPawn.flushInput()
+	print "[Debug] Serial port opened"
 except:
 	print "[Error] No Pawn connected"
 
@@ -21,6 +42,9 @@ stringaLCD=" "
 
 #Opening socket connection with Scratch
 s = scratch.Scratch()
+
+thread = threading.Thread(target=readserial, args=(serPawn,s))
+thread.start()
 
 while True:
 	#Pocesses messages from scratch to pawn
@@ -34,20 +58,5 @@ while True:
 				print "[Debug] Sending Image to LCD:"
 				print element[1]
 				serPawn.write(element[1])
-	
-	#Processes messages from the pawn to scrach
-	print serPawn.inWaiting()
-	while serPawn.inWaiting() > 0:
-		stringaNFC = serPawn.readline().strip()
-		if "room" in stringaNFC:
-			print '[Debug] Room received:'
-			print stringaNFC
-			s.broadcast(stringaNFC)
-		elif "card" in stringaNFC:
-			print '[Debug] Card received:'
-			print stringaNFC
-			s.broadcast(stringaNFC)
-		else:
-			print '[Debug] Text received from Pawn NFC: '
-			print stringaNFC
-			#	serPawn.flushInput()
+
+		

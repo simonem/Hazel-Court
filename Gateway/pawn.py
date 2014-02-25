@@ -46,17 +46,20 @@ s = scratch.Scratch()
 thread = threading.Thread(target=readserial, args=(serPawn,s))
 thread.start()
 
-while True:
+try:
+	while True:
 	#Pocesses messages from scratch to pawn
-	for msg in listen():
-		print msg
-		if msg[0] == 'broadcast':
-			print "Broadcast message: "
-			print msg[1]
-			element = msg[1].split(":")
-			if element[0] == 'image':
-				print "[Debug] Sending Image to LCD:"
-				print element[1]
-				serPawn.write(element[1])
-
+		for msg in listen():
+			print msg
+			if msg[0] == 'broadcast':
+				print "Broadcast message: "
+				print msg[1]
+				element = msg[1].split(":")
+				if element[0] == 'image':
+					print "[Debug] Sending Image to LCD:"
+					print element[1]
+					serPawn.write(element[1])
+except KeyboardInterrupt:
+	print "CLOSING..."
+	thread.exit() 
 		

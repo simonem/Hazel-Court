@@ -31,7 +31,7 @@ def readserial(serial,scratch):
 
 #Opening serial connection with Pawn/NFC
 try:
-	serPawn = serial.Serial('/dev/tty.usbmodemfd121', 38400)
+	serPawn = serial.Serial('/dev/tty.usbserial-A6XFZBHP', 9600)
 	serPawn.flushInput()
 	print "[Debug] Serial port opened"
 except:
@@ -58,7 +58,7 @@ try:
 				if element[0] == 'image':
 					print "[Debug] Sending Image to LCD:"
 					print element[1]
-					serPawn.write(element[1])
+					serPawn.write(msg[1])
 except KeyboardInterrupt:
 	print "CLOSING..."
 	thread.join(1) 

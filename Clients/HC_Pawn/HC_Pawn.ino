@@ -42,15 +42,15 @@ void loop()
 //      Serial.println(incomingCommand);     
       delay(100);      
 //      Serial.println(incomingCommand.equals("prova"));
-      Serial1.print("Incoming command: ");
-      Serial1.println(incomingCommand);
+//      Serial1.print("Incoming command: ");
+//      Serial1.println(incomingCommand);
       separatorPosition = incomingCommand.indexOf(':');
       service = incomingCommand.substring(0,separatorPosition);
-      Serial1.print("Service: ");
-      Serial1.println(service);
+//      Serial1.print("Service: ");
+//      Serial1.println(service);
       imgName = incomingCommand.substring(separatorPosition+1,incomingCommand.length());
-      Serial1.print("imgName: ");
-      Serial1.println(imgName);
+//      Serial1.print("imgName: ");
+//     Serial1.println(imgName);
       if(service == "image")
        { 
         imgName += ".bmp";

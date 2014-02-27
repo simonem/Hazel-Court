@@ -17,7 +17,7 @@ void setup() {
 
   Serial.begin(38400);
   while (!Serial) { ; }
-  Serial.println("Pawn-LCD started");
+  Serial.println("Pawn started");
 
   lcd.begin(9600);
   delay(100);

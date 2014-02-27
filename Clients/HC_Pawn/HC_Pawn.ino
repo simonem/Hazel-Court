@@ -12,6 +12,9 @@ String payloadAsString = "";
 String incomingCommand;
 SoftwareSerial lcd(15, A5); // RX, TX
 char charBuf[50];
+int separatorPosition;
+String imgName;
+String service;
 
 void setup() {
 
@@ -39,10 +42,23 @@ void loop()
 //      Serial.println(incomingCommand);     
       delay(100);      
 //      Serial.println(incomingCommand.equals("prova"));
-      incomingCommand += ".bmp";
-      incomingCommand.toCharArray(charBuf, 50); 
-      tft_command(0); 
-      tft_command(13,0,0,charBuf);
+      Serial1.print("Incoming command: ");
+      Serial1.println(incomingCommand);
+      separatorPosition = incomingCommand.indexOf(':');
+      service = incomingCommand.substring(0,separatorPosition);
+      Serial1.print("Service: ");
+      Serial1.println(service);
+      imgName = incomingCommand.substring(separatorPosition+1,incomingCommand.length());
+      Serial1.print("imgName: ");
+      Serial1.println(imgName);
+      if(service == "image")
+       { 
+        imgName += ".bmp";
+        imgName.toCharArray(charBuf, 50); 
+        tft_command(0); 
+        tft_command(3,0);  //Confirm portrait mode
+        tft_command(13,0,0,charBuf);
+     }
     }       
     delay(1000);
     

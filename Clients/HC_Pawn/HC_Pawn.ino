@@ -15,9 +15,9 @@ char charBuf[50];
 
 void setup() {
 
-  Serial.begin(38400);
-  while (!Serial) { ; }
-  Serial.println("Pawn started");
+  Serial1.begin(9600);
+  while (!Serial1) { ; }
+  Serial1.println("Pawn started on Serial1");
 
   lcd.begin(9600);
   delay(100);
@@ -32,9 +32,9 @@ void setup() {
 
 void loop() 
 {
-    if(Serial.available() > 0)
+    if(Serial1.available() > 0)
     {
-      incomingCommand = Serial.readStringUntil('\n');
+      incomingCommand = Serial1.readStringUntil('\n');
 //      Serial.println("Stringa: ");
 //      Serial.println(incomingCommand);     
       delay(100);      
@@ -62,7 +62,7 @@ void loop()
       }
       if (payloadAsString != currentpayload)
       {
-      Serial.println(payloadAsString);
+      Serial1.println(payloadAsString);
       currentpayload = payloadAsString;
       }
     }

@@ -17,9 +17,9 @@ void setup() {
   vibrator_setup();
   nfc.begin();
   
-  Serial1.begin(38400);
+  Serial1.begin(9600);
   while (!Serial1) { ; }
-  Serial1.println("Magnifier Started2");
+  Serial1.println("Magnifier Started on Serial1");
   delay(100);
  blink; 
 }

@@ -18,10 +18,10 @@ void setup() {
   nfc.begin();
   
   Serial1.begin(9600);
-  while (!Serial1) { ; }
-  Serial1.println("Magnifier Started on Serial1");
+//  while (!Serial1) { ; }
+  Serial1.println("Magnifier Started on Serial11");
   delay(100);
- blink; 
+  blink(); 
 }
 
 void loop() {

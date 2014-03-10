@@ -13,7 +13,7 @@ def listen():
 
 s = scratch.Scratch()
 try:
-	printer = Adafruit_Thermal("/dev/tty.usbserial-A501E3BT", 19200, timeout=5)
+	printer = Adafruit_Thermal("/dev/tty.usbserial-A602TNG1", 19200, timeout=5)
 except:
 	print "[Error] No printer connected"
 stringa=" "

@@ -23,6 +23,10 @@ def readserial(serial,scratch):
 			print '[Debug] Card received:'
 			print stringaNFC
 			scratch.broadcast(stringaNFC)
+		elif "clue" in stringaNFC:
+			print '[Debug] Clue received:'
+			print stringaNFC
+			scratch.broadcast(stringaNFC)
 		else:
 			print '[Debug] Text received from Pawn NFC: '
 			print stringaNFC
@@ -57,8 +61,13 @@ try:
 				element = msg[1].split(":")
 				if element[0] == 'image':
 					print "[Debug] Sending Image to LCD:"
-					print element[1]
+					print msg[1]
 					serPawn.write(msg[1])
+				if element[0] == 'text':
+					print "[Debug] Sending Text to Printer:"
+					print msg[1]
+					serPawn.write(msg[1])
+					
 except KeyboardInterrupt:
 	print "CLOSING..."
 	thread.join(1) 

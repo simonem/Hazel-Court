@@ -19,7 +19,7 @@ String service;
 void setup() {
 
   Serial1.begin(9600);
-  while (!Serial1) { ; }
+ // while (!Serial1) { ; }
   Serial1.println("Pawn started on Serial1");
 
   lcd.begin(9600);
@@ -82,7 +82,7 @@ void loop()
       currentpayload = payloadAsString;
       }
     }
-    delay(1000);
+    delay(500);
   }
     
     

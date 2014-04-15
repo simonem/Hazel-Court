@@ -33,13 +33,13 @@ def readserial(serial,scratch):
 		#	serPawn.flushInput()
 	
 
-#Opening serial connection with Pawn/NFC
+#Opening serial connection with Pawn, Printer and Magnifier
 try:
 	serPawn = serial.Serial('/dev/tty.usbserial-A6XFZBHP', 9600)
 	serPawn.flushInput()
 	print "[Debug] Serial port opened"
 except:
-	print "[Error] No Pawn connected"
+	print "[Error] No Serial cradle connected"
 
 stringaNFC=" "
 stringaLCD=" "
